@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheckPC - Diagnostic Tool</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>CheckPC</h2>
+      </div>
+      <nav>
+        <ul>
+          <li class="active" data-target="dashboard">Dashboard</li>
+          <li data-target="keyboard-test">Test Bàn Phím</li>
+          <li data-target="screen-test">Test Màn Hình</li>
+          <li data-target="media-test">Camera, Mic, Loa</li>
+          <li data-target="mouse-test">Test Chuột & Touchpad</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <!-- Dashboard Section -->
+      <section id="dashboard" class="section active">
+        <header>
+          <h1>Tổng Quan Hệ Thống</h1>
+          <button id="refresh-btn" class="btn-primary">Quét Lại Cấu Hình</button>
+        </header>
+
+        <div id="loading-spinner" class="loading-spinner">
+          <div class="spinner"></div>
+          <p>Đang quét thông tin phần cứng sâu...</p>
+        </div>
+
+        <div id="dashboard-grid" class="dashboard-grid hidden">
+          <!-- OS Widget -->
+          <div class="widget os-widget">
+            <h3>Hệ điều hành</h3>
+            <div id="os-info" class="info-content"></div>
+          </div>
+          <!-- Motherboard Widget -->
+          <div class="widget mb-widget">
+            <h3>Bo mạch chủ</h3>
+            <div id="mb-info" class="info-content"></div>
+          </div>
+          <!-- CPU Widget -->
+          <div class="widget cpu-widget">
+            <h3>Vi xử lý (CPU)</h3>
+            <div id="cpu-info" class="info-content"></div>
+          </div>
+          <!-- RAM Widget -->
+          <div class="widget ram-widget">
+            <h3>Bộ nhớ (RAM)</h3>
+            <div id="ram-info" class="info-content"></div>
+          </div>
+          <!-- GPU Widget -->
+          <div class="widget gpu-widget">
+            <h3>Đồ họa (GPU)</h3>
+            <div id="gpu-info" class="info-content"></div>
+          </div>
+          <!-- Disk Widget -->
+          <div class="widget disk-widget">
+            <h3>Lưu trữ (Ổ cứng)</h3>
+            <div id="disk-info" class="info-content"></div>
+          </div>
+          <!-- Battery Widget -->
+          <div class="widget battery-widget">
+            <h3>Pin (Laptop)</h3>
+            <div id="battery-info" class="info-content"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Keyboard Test Section -->
+      <section id="keyboard-test" class="section">
+        <header>
+          <h1>Test Bàn Phím</h1>
+          <p>Nhấn các phím trên bàn phím của bạn. Nếu phím sáng lên màu xanh, phím đó hoạt động bình thường.</p>
+        </header>
+        <div class="keyboard-container">
+          <div id="virtual-keyboard">
+            <!-- Sẽ được render bởi JS -->
+          </div>
+          <button id="reset-kb-btn" class="btn-secondary">Reset Bàn Phím</button>
+        </div>
+      </section>
+
+      <!-- Screen Test Section -->
+      <section id="screen-test" class="section">
+        <header>
+          <h1>Test Điểm Chết Màn Hình</h1>
+          <p>Màn hình sẽ chuyển sang toàn màu để bạn dễ dàng phát hiện điểm chết. Click chuột hoặc nhấn phím bất kỳ để chuyển màu, nhấn ESC để thoát.</p>
+        </header>
+        <div class="screen-test-container">
+          <button id="start-screen-test-btn" class="btn-primary large-btn">BẮT ĐẦU TEST MÀN HÌNH</button>
+        </div>
+      </section>
+
+      <!-- Media Test Section -->
+      <section id="media-test" class="section">
+        <header>
+          <h1>Test Camera, Micro & Loa</h1>
+        </header>
+        <div class="dashboard-grid">
+           <div class="widget">
+             <h3>Camera</h3>
+             <video id="camera-preview" style="width: 100%; height: 200px; background: #000; border-radius: 8px; margin-bottom: 10px;" autoplay playsinline></video>
+             <button id="start-camera-btn" class="btn-primary" style="width: 100%">Bật Camera</button>
+           </div>
+           <div class="widget">
+             <h3>Microphone</h3>
+             <div class="mic-visualizer" style="height: 200px; background: #000; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: flex-end; padding: 10px;">
+               <div id="mic-level" style="width: 100%; background: var(--primary-color); height: 0%; transition: height 0.1s;"></div>
+             </div>
+             <button id="start-mic-btn" class="btn-primary" style="width: 100%">Bật Mic</button>
+           </div>
+           <div class="widget">
+             <h3>Loa / Âm thanh</h3>
+             <div style="height: 200px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 10px;">
+                <p>Nhấn nút để nghe âm thanh trái/phải</p>
+             </div>
+             <button id="play-sound-btn" class="btn-primary" style="width: 100%">Phát Âm Thanh Test</button>
+           </div>
+        </div>
+      </section>
+
+      <!-- Mouse Test Section -->
+      <section id="mouse-test" class="section">
+        <header>
+          <h1>Test Chuột & Touchpad</h1>
+          <p>Kiểm tra các nút bấm và khu vực cảm ứng (Touchpad) để đảm bảo không có điểm liệt cảm ứng hoặc kẹt phím.</p>
+        </header>
+        <div class="mouse-test-container" style="display: flex; gap: 20px;">
+          <div class="mouse-buttons" style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+            <div id="btn-left" class="mouse-btn-indicator">Chuột Trái (Left Click)</div>
+            <div id="btn-right" class="mouse-btn-indicator">Chuột Phải (Right Click)</div>
+            <div id="btn-middle" class="mouse-btn-indicator">Con Lăn (Middle Click)</div>
+            <div id="scroll-indicator" class="mouse-btn-indicator">Cuộn (Scroll)</div>
+          </div>
+          <div class="touchpad-area" style="flex: 2; height: 300px; background: rgba(255,255,255,0.05); border: 2px dashed var(--border); border-radius: 8px; position: relative; overflow: hidden;" id="touchpad-canvas">
+            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--text-secondary); pointer-events: none;">Di chuột / Vuốt Touchpad vào khu vực này</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Overlay for screen test -->
+    <div id="fullscreen-overlay" class="hidden"></div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
