@@ -2,7 +2,7 @@
 
 **CheckPC** là một phần mềm mã nguồn mở chạy trên Windows, được xây dựng bằng **Electron.js**. Công cụ này được thiết kế đặc biệt để giúp người dùng (đặc biệt là những người không chuyên) kiểm tra nhanh và chính xác tình trạng phần cứng của máy tính/laptop, cực kì hữu ích khi cần mua máy tính cũ để tránh bị lừa.
 
-Được phát triển bởi **[hieuphamcoder](https://github.com/hieuphamcoder)**.
+Được phát triển bởi **[hieuphamcoder](https://github.com/hjewnd2k)**.
 
 ---
 
@@ -10,7 +10,7 @@
 
 Bạn có thể tải ngay phiên bản chạy trực tiếp (`.exe`) không cần cài đặt tại đây:
 
-👉 **[TẢI VỀ CHECKPC (.exe) TẠI ĐÂY](https://github.com/hieuphamcoder/check-pc/releases/latest/download/CheckPC.exe)** 👈
+👉 **[TẢI VỀ CHECKPC (.exe) TẠI ĐÂY](https://github.com/hjewnd2k/check-pc/releases/latest/download/CheckPC.exe)** 👈
 
 _(Lưu ý: Bạn hãy đọc phần hướng dẫn tạo Release ở cuối trang để link này hoạt động nhé)._
 
@@ -35,7 +35,7 @@ Yêu cầu máy tính đã cài đặt **Node.js** và **npm**.
 
 1. Clone repository về máy:
    ```bash
-   git clone https://github.com/hieuphamcoder/check-pc.git
+   git clone https://github.com/hjewnd2k/check-pc.git
    ```
 2. Di chuyển vào thư mục dự án:
    ```bash
